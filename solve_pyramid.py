@@ -4,11 +4,9 @@ import sys
 # main function handles I/O
 # calls the pyramid solver
 def main(argv):
-    # TODO: try/except open file
     in_file = open(argv[1], "r")
     lines = in_file.readlines()
 
-    # get target
     target = read_target(lines[0])
 
     rows = [[int(num) for num in line.strip().split(",")] for line in lines[1:]]
@@ -20,7 +18,8 @@ def main(argv):
 
 
 def get_path_reversed(rows, target, path, row_index, current_row, current_total):
-    '''Recursively builds the path in reverse by modifying the <path> array.
+    '''Recursively builds the path in reverse by modifying
+       the <path> array on the way up.
 
     Parameters:
         rows (list of list): rows in the pyramid, each row is a list of int
@@ -34,7 +33,6 @@ def get_path_reversed(rows, target, path, row_index, current_row, current_total)
         bool: whether or not traversed path results in target product
 
     '''
-    # update the running total
     current_total = current_total * (rows[current_row][row_index])
 
     if (len(rows) == current_row + 1):  # bottom of the pyramid
